@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import Pagination from "@mui/material/Pagination";
 import { styled } from "@mui/material/styles";
 import { useSearchParams } from "react-router-dom";
-import { getJobs } from "../data/fetchData";
 import fetchData from "../data/fetchData"
 
 const MainPagination = styled(Pagination)(({ theme }) => ({
