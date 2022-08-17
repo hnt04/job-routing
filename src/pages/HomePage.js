@@ -5,6 +5,7 @@ import Pagination from "@mui/material/Pagination";
 import { styled } from "@mui/material/styles";
 import { useSearchParams } from "react-router-dom";
 import { getJobs } from "../data/fetchData";
+import fetchData from "../data/fetchData"
 
 const MainPagination = styled(Pagination)(({ theme }) => ({
   ul: {
@@ -12,16 +13,21 @@ const MainPagination = styled(Pagination)(({ theme }) => ({
   },
 }));
 
-function HomePage({jobs,pagesTotal}) {
-  // const [jobs, setJobs] = useState([]);
-  // const [pagesTotal, setPagesTotal] = useState(0);
+function HomePage() {
+  const [jobs, setJobs] = useState([]);
+  const [pagesTotal, setPagesTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q");
 
   useEffect(() => {
-    getJobs(page,q)
-  }, []);
+    const fetchJobs = async () => {
+      const data = await fetchData.getJobs(page, q);
+      setJobs(data.jobs);
+      setPagesTotal(data.pagesTotal);
+    };
+    fetchJobs();
+  }, [page, q]);
 
   return (
     // <Container sx={{ p: 3 }} maxWidth="lg">

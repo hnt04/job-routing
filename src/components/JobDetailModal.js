@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import CardContent from "@mui/material/CardContent";
 import { useNavigate, useParams } from "react-router-dom";
-import api from "../data/fetchData";
+import fetchData from "../data/fetchData";
 import { Chip } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Card from "@mui/material/Card";
@@ -34,16 +34,17 @@ const style = {
 
 function JobDetailModal({ title, description, city, id, skills }) {
   // const { id } = useParams();
-  const [job, setJob] = useState(null);
+  const [singleJob, setSingleJob] = useState(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSingleJob = async () => {
-      const data = await api.getSingleJob(id);
-      setJob(data);
-    }; fetchSingleJob();
-  }, []);
+      const data = await fetchData.getSingleJob(id);
+      setSingleJob(data.singleJob);
+    };
+    fetchSingleJob();
+  }, [id]);
 
   const handleCloseModal = () => {
     navigate(-1);
@@ -68,7 +69,7 @@ function JobDetailModal({ title, description, city, id, skills }) {
             component="div"
             sx={{ color: "#4e342e", textAlign:'center',}}
           >
-            {title}
+            {singleJob.title}
           </Typography>
           <Divider />
           <Typography contained variant="h6" component="div">
