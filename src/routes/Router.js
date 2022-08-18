@@ -12,7 +12,6 @@ function Router() {
     let state = location.state;
     console.log(location)
     console.log(state)
-    let auth = useAuth();
     function RequireAuth({ children }) {
       let auth = useAuth();
       console.log("user status:", auth.user);
