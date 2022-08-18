@@ -28,12 +28,11 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: { xs: "90%", md: 600 },
   backgroundColor: "background.paper",
-  borderRadius: 2,
-  border: "none",
+  borderRadius: 2
 };
 
-function JobDetailModal({ title, description, city, id, skills }) {
-  // const { id } = useParams();
+function JobDetailModal() {
+  const { id } = useParams();
   const [singleJob, setSingleJob] = useState(null);
 
   const navigate = useNavigate();
@@ -42,6 +41,7 @@ function JobDetailModal({ title, description, city, id, skills }) {
     const fetchSingleJob = async () => {
       const data = await fetchData.getSingleJob(id);
       setSingleJob(data.singleJob);
+      console.log(singleJob)
     };
     fetchSingleJob();
   }, [id]);
@@ -67,9 +67,9 @@ function JobDetailModal({ title, description, city, id, skills }) {
           <Typography
             variant="h4"
             component="div"
-            sx={{ color: "#4e342e", textAlign:'center',}}
+            sx={{ color: "#4e342e", textAlign:'center', paddingBottom:'20px'}}
           >
-            {singleJob.title}
+            {singleJob?.title}
           </Typography>
           <Divider />
           <Typography contained variant="h6" component="div">
@@ -78,18 +78,18 @@ function JobDetailModal({ title, description, city, id, skills }) {
         justifyContent: 'center',
         textAlign:'center',
         p: 1,
-        m: 1
+        m: 1,
+        marginTop:'20px'
         }}>
-          {skills.slice(0,3).map(skill => <Chip label={skill} sx={{ backgroundColor:"#ef9a9a"}}  />
+          {singleJob?.skills.slice(0,3).map(skill => <Chip label={skill} sx={{ backgroundColor:"#ef9a9a"}}  />
             )} 
             </Box>     
       </Typography>
           <Typography sx={{ color: "#6d4c41", marginTop: "30px", textAlign:"center" }} className="job-description-main">
-            {description}
+            {singleJob?.description}
           </Typography>
-                <Typography>{description}</Typography>
-              <Typography variant="h6" component="div">
-                City: {city}
+          <Typography variant="h6" component="div" sx={{ textAlign:"center", paddingTop:"40px"}}>
+                City: {singleJob?.city}
               </Typography>
             </CardContent>
             </Stack>

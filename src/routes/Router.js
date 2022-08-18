@@ -10,6 +10,8 @@ import { Navigate } from "react-router-dom";
 function Router() {
     let location = useLocation();
     let state = location.state;
+    console.log(location)
+    console.log(state)
     let auth = useAuth();
     function RequireAuth({ children }) {
       let auth = useAuth();
