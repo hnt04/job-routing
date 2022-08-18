@@ -44,7 +44,7 @@ function JobDetailModal() {
       console.log(singleJob)
     };
     fetchSingleJob();
-  }, []);
+  }, [id]);
 
   const handleCloseModal = () => {
     navigate(-1);
