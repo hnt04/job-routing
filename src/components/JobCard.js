@@ -7,9 +7,9 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { useAuth } from "../auth/AuthContext";
+// import { useAuth } from "../auth/AuthContext";
 
 const CardStyle = styled(Card)(({ theme }) => ({
   Width: "400px",
@@ -22,16 +22,16 @@ const CardStyle = styled(Card)(({ theme }) => ({
 }));
 
 function JobCard({ description, skills, id, title }) {
-  const auth = useAuth;
-  const navigate = useNavigate();
-  let location = useLocation();
-  const handleClick = (event) => {
-    if (auth.user) {
-      navigate(`/job/${id}`);
-    } else {
-      navigate("/login");
-    }
-  };
+  // const auth = useAuth;
+  // const navigate = useNavigate();
+  // let location = useLocation();
+  // const handleClick = (event) => {
+  //   if (!auth.user) {
+  //     navigate(`/login`); 
+  //   } else {
+  //     navigate("/job/${id}");
+  //   }
+  // };
 
   return (
     <CardStyle>
@@ -70,9 +70,9 @@ function JobCard({ description, skills, id, title }) {
           variant="contained"
           component={Link}
           to={`/job/${id}`}
-          state={{ backgroundLocation: location }}
+          // state={{ backgroundLocation: location }}
           sx={{ width: "130px", backgroundColor: "#ff6f00", marginBottom:"20px" }}
-          onClick={handleClick}
+          // onClick={handleClick}
         >
           Learn More
         </Button>

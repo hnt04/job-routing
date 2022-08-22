@@ -41,7 +41,6 @@ function JobDetailModal() {
     const fetchSingleJob = async () => {
       const data = await fetchData.getSingleJob(id);
       setSingleJob(data.singleJob);
-      console.log(singleJob)
     };
     fetchSingleJob();
   }, [id]);
